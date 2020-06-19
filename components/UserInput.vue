@@ -10,7 +10,6 @@
         placeholder="A name bro"
       />
     </div>
-    <p>Raw debug: {{ participants }}</p>
   </div>
 </template>
 
@@ -26,7 +25,7 @@ export default Vue.extend({
   props: {
     label: {
       type: String,
-      default: `Hello yo 👋, Write the participant's names:`,
+      default: `Hello 👋, Write the participant's names, and click play!:`,
     },
   },
   data(): UserInputState {

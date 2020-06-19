@@ -1,11 +1,16 @@
 <template>
   <div class="section">
     <div class="container">
-      <p>logo here...</p>
-      <h1 class="title">Coffe time</h1>
+      <figure class="image is-128x128">
+        <img src="/coffee.svg" alt="Logo page" />
+      </figure>
+      <h1 class="title">Coffee time</h1>
       <h2 class="subtitle">Who will make the coffee today?</h2>
       <hr />
       <user-input @handleList="handleList" />
+      <list-viewer :users="list" @handleDelete="handleDelete" />
+      <hr />
+      <roulette :users="list" @handleClear="handleClear" />
     </div>
   </div>
 </template>
@@ -13,6 +18,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import UserInput from '~/components/UserInput.vue'
+import ListViewer from '~/components/ListViewer.vue'
+import Roulette from '~/components/Roulette.vue'
 
 type IndexState = {
   list: Array<string>
@@ -21,10 +28,23 @@ type IndexState = {
 export default Vue.extend({
   components: {
     UserInput,
+    ListViewer,
+    Roulette,
+  },
+  data(): IndexState {
+    return {
+      list: [],
+    }
   },
   methods: {
     handleList(list: Array<string>): void {
-      console.log(list)
+      this.list = list
+    },
+    handleDelete(index: number): void {
+      this.list.splice(index, 1)
+    },
+    handleClear(): void {
+      this.list = []
     },
   },
 })
