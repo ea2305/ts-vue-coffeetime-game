@@ -52,6 +52,7 @@ export default {
       debug: process.env.NODE_ENV === 'development',
     },
     cacheAssets: true,
+    offlineAnalytics: true,
     manifest: {
       name: 'Coffee Time / Roulette game with names',
       short_name: 'Coffee Time ☕️⏱',
