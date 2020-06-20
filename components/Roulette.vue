@@ -1,14 +1,18 @@
 <template>
   <div>
-    <div class="hero">
-      <div class="hero-body">
-        <h3
-          class="is-size-3 has-text-centered has-text-weight-bold is-capitalized has-text-success"
-        >
-          {{ winner }}
-        </h3>
-      </div>
-    </div>
+    <h3
+      class="is-size-3 has-text-centered has-text-weight-bold is-capitalized has-text-success"
+    >
+      {{ winner }}
+    </h3>
+    <br />
+    <button
+      v-if="emptyWinner && !locked"
+      class="button is-small is-danger is-fullwidth is-light"
+      @click.prevent="deleteItem"
+    >
+      Remove name 👩‍💻
+    </button>
     <hr />
     <button
       class="button is-info is-fullwidth"
@@ -34,6 +38,7 @@ const timer: number = 3
 
 type RouletteState = {
   winner: string
+  winnerId: number
   locked: boolean
 }
 
@@ -47,12 +52,16 @@ export default Vue.extend({
   data(): RouletteState {
     return {
       winner: '',
+      winnerId: 0,
       locked: false,
     }
   },
   computed: {
     readyToPlay(): boolean {
       return this.users.length < 2
+    },
+    emptyWinner(): boolean {
+      return this.winner !== ''
     },
   },
   methods: {
@@ -68,7 +77,6 @@ export default Vue.extend({
     },
     async play(): Promise<number> {
       let count = timer
-      let winnerIndex = 0
       this.locked = true
       this.winner = `${count--}`
       const localInterval = setInterval(() => {
@@ -76,19 +84,24 @@ export default Vue.extend({
       }, 999)
 
       try {
-        winnerIndex = await this.getResult()
-        this.winner = this.users[winnerIndex]
+        this.winnerId = await this.getResult()
+        this.winner = this.users[this.winnerId]
       } catch (error) {
         this.winner = 'Woooops something went wrong :('
       } finally {
         clearInterval(localInterval)
         this.locked = false
       }
-      return winnerIndex
+      return this.winnerId
     },
     clear(): void {
       this.winner = ''
       this.$emit('handleClear')
+    },
+    deleteItem(): void {
+      this.$emit('handleDelete', this.winnerId)
+      this.winner = ''
+      this.winnerId = 0
     },
   },
 })

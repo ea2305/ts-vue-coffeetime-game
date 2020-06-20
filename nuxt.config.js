@@ -47,8 +47,24 @@ export default {
     '@nuxtjs/pwa',
   ],
   pwa: {
-    icon: {
-      iconSrc: '/favicon.png',
+    dev: process.env.NODE_ENV === 'development',
+    config: {
+      debug: process.env.NODE_ENV === 'development',
+    },
+    cacheAssets: true,
+    manifest: {
+      name: 'Coffee Time / Roulette game with names',
+      short_name: 'Coffee Time ☕️⏱',
+      lang: 'en',
+      display: 'standalone',
+      orientation: 'portrait',
+      icons: [
+        {
+          src: '/icons/icon.png',
+          sizes: '144x144',
+          type: 'image/png',
+        },
+      ],
     },
   },
   /*

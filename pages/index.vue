@@ -10,7 +10,11 @@
       <user-input @handleAdd="handleAdd" />
       <list-viewer :users="list" @handleDelete="handleDelete" />
       <hr />
-      <roulette :users="list" @handleClear="handleClear" />
+      <roulette
+        :users="list"
+        @handleClear="handleClear"
+        @handleDelete="handleDelete"
+      />
     </div>
   </div>
 </template>

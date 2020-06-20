@@ -7,7 +7,7 @@
         name="inputText"
         class="input"
         type="text"
-        placeholder="A name bro"
+        placeholder="Press enter to add bro "
         @keydown.enter="storeInputName"
       />
     </div>
