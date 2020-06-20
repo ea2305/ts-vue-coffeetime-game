@@ -3,7 +3,7 @@
     <div class="hero">
       <div class="hero-body">
         <h3
-          class="is-size-3 has-text-centered has-text-weight-bold is-capitalized"
+          class="is-size-3 has-text-centered has-text-weight-bold is-capitalized has-text-success"
         >
           {{ winner }}
         </h3>
@@ -11,7 +11,7 @@
     </div>
     <hr />
     <button
-      class="button is-primary is-fullwidth"
+      class="button is-info is-fullwidth"
       :disabled="readyToPlay || locked"
       @click.prevent="play"
     >
@@ -19,7 +19,7 @@
     </button>
     <br />
     <button
-      class="button is-warning is-fullwidth"
+      class="button is-gray is-fullwidth"
       :disabled="readyToPlay || locked"
       @click.prevent="clear"
     >
@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue'
-const timer: number = 5
+const timer: number = 3
 
 type RouletteState = {
   winner: string

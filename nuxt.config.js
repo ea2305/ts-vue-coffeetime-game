@@ -16,7 +16,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
+        content: 'Names Roulette, Pickupt a random name from a list',
       },
     ],
     link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
@@ -42,6 +42,11 @@ export default {
     '@nuxtjs/bulma',
     '@nuxtjs/pwa',
   ],
+  pwa: {
+    icon: {
+      iconSrc: '/favicon.png',
+    },
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/

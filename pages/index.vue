@@ -7,7 +7,7 @@
       <h1 class="title">Coffee time</h1>
       <h2 class="subtitle">Who will make the coffee today?</h2>
       <hr />
-      <user-input @handleList="handleList" />
+      <user-input @handleAdd="handleAdd" />
       <list-viewer :users="list" @handleDelete="handleDelete" />
       <hr />
       <roulette :users="list" @handleClear="handleClear" />
@@ -37,8 +37,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleList(list: Array<string>): void {
-      this.list = list
+    handleAdd(element: string): void {
+      this.list.push(element)
     },
     handleDelete(index: number): void {
       this.list.splice(index, 1)

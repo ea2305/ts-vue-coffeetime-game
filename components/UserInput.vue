@@ -4,10 +4,11 @@
     <div class="control">
       <input
         v-model="inputText"
-        @keydown.enter="storeInputName"
+        name="inputText"
         class="input"
         type="text"
         placeholder="A name bro"
+        @keydown.enter="storeInputName"
       />
     </div>
   </div>
@@ -18,27 +19,24 @@ import Vue from 'vue'
 
 type UserInputState = {
   inputText: string
-  participants: Array<string>
 }
 
 export default Vue.extend({
   props: {
     label: {
       type: String,
-      default: `Hello 👋, Write the participant's names, and click play!:`,
+      default: `Hello 👋, Write the participant's names, and click play!`,
     },
   },
   data(): UserInputState {
     return {
       inputText: '',
-      participants: [],
     }
   },
   methods: {
     storeInputName(): void {
-      this.participants.push(this.inputText)
+      this.$emit('handleAdd', this.inputText)
       this.inputText = ''
-      this.$emit('handleList', this.participants)
     },
   },
 })
