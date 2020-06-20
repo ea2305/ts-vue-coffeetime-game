@@ -3,8 +3,8 @@
     <label for="inputText" class="label is-size-4">{{ label }}</label>
     <div class="control">
       <input
+        id="inputText"
         v-model="inputText"
-        name="inputText"
         class="input"
         type="text"
         placeholder="Press enter to add bro "
