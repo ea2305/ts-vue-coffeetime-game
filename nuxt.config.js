@@ -62,7 +62,7 @@ export default {
       icons: [
         {
           src: '/icons/icon.png',
-          sizes: '144x144',
+          sizes: '540x540',
           type: 'image/png',
         },
       ],
