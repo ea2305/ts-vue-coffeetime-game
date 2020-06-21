@@ -47,25 +47,26 @@ export default {
     '@nuxtjs/pwa',
   ],
   pwa: {
-    dev: process.env.NODE_ENV === 'development',
-    config: {
-      debug: process.env.NODE_ENV === 'development',
+    icon: {
+      iconSrc: './static/icons/icon.png',
     },
-    cacheAssets: true,
-    offlineAnalytics: true,
+    workbox: {
+      dev: process.env.NODE_ENV === 'development',
+      config: {
+        debug: process.env.NODE_ENV === 'development',
+      },
+      cacheAssets: true,
+      offlineAnalytics: true,
+      cleanupOutdatedCaches: true,
+    },
     manifest: {
-      name: 'Coffee Time / Roulette game with names',
-      short_name: 'Coffee Time ☕️⏱',
+      start_url: '/',
+      name: 'Coffee Time ☕️',
+      description: 'Roulette game with names',
+      short_name: 'Coffee Time ☕️',
       lang: 'en',
       display: 'standalone',
       orientation: 'portrait',
-      icons: [
-        {
-          src: '/icons/icon.png',
-          sizes: '540x540',
-          type: 'image/png',
-        },
-      ],
     },
   },
   /*
